@@ -1,0 +1,18 @@
+body{
+    background: rgb(71,87,207);
+    background: linear-gradient(90deg, rgba(71,87,207,1) 11%, rgba(196,80,192,1) 100%);
+    font-family: 'Hind Siliguri', sans-serif;
+    font-family: 'Lato', sans-serif;
+    font-family: 'Outfit', sans-serif;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.App{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

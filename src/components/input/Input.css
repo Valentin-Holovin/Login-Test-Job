@@ -1,0 +1,26 @@
+input{
+    background-color: #E6E6E6;
+    border: none;
+    border-radius: 20px;
+    height: 3rem;
+    width: 18rem;
+    outline: none;
+    margin-bottom: 10px;
+}
+
+input::placeholder{
+    font-size: 15px;
+    padding-left: 60px;
+}
+
+@media screen and (max-width: 800px){
+    input{
+        width: 90%;
+        height: 2.5rem;
+    }
+    
+    input::placeholder{
+        padding-left: 60px;
+        font-size: 12px;
+    }
+}
