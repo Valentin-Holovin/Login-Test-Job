@@ -48,4 +48,8 @@ input::placeholder{
         font-size: 12px;
         background-size: 15px;
     }
+
+    .input_validation{
+        font-size: 9px;
+    }
 }
