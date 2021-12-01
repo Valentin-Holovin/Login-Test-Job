@@ -5,12 +5,30 @@ input{
     height: 3rem;
     width: 18rem;
     outline: none;
-    margin-bottom: 10px;
+    margin-bottom: 2px;
+    text-indent: 50px;
+    background-repeat: no-repeat;  
+    background-size: 18px;  
+    background-position: 18px;
+}
+
+.input_validation{
+    margin-left: 18px;
+    height: 15px;
+    font-size: 12px;
+    color: red;
+}
+
+#email{
+    background-image: url(../../assets/img/envelope.png);
+}
+
+#password{
+    background-image: url(../../assets/img/lock.png);
 }
 
 input::placeholder{
     font-size: 15px;
-    padding-left: 60px;
 }
 
 @media screen and (max-width: 800px){
@@ -20,7 +38,14 @@ input::placeholder{
     }
     
     input::placeholder{
-        padding-left: 60px;
         font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 400px){
+    input{
+        height: 2rem;
+        font-size: 12px;
+        background-size: 15px;
     }
 }

@@ -1,47 +1,29 @@
-import React, {useState} from 'react'
+import './LoginPage.css'
+import React from 'react'
 import { connect } from 'react-redux'
 import * as loginActions from '../../redux/actions/loginActions'
 import Input from '../../components/input/Input'
-import './LoginPage.css'
-import Logo from '../../assets/img/Снимок123.PNG'
+import Logo from '../../assets/img/logo.PNG'
 
 const LoginPage = (props) => {
-    const [emailDirty, setEmailDirty] = useState(false)
-    const [passwordDirty, setPasswordDirty] = useState(false)
-    const [emailError, setEmailError] = useState('Email cannot be empty')
-    const [passwordError, setPasswordError] = useState('Password cannot be empty')
 
-    const emailHandler = (e) => {
-        loginActions.setEmail(e.target.value)
+    const emailHandler = (value) => {
         const re =  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        if(!re.test(String(e.target.value).toLowerCase())){
-            setEmailError('Incorrect email')
+        if(!re.test(String(value).toLowerCase())){
+            return('Incorrect email')
         }else{
-            setEmailError('')
+            return('')
         }
     }
 
-    const passwordHandler = (e) => {
-        loginActions.setPassword(e.target.value)
-        if(e.target.value.length < 3 || e.target.value.length > 8){
-            setPasswordError('Password cannot be empty')
-            if(e.target.value){
-               setPasswordError('Password must be longer than 3 and less than 8')
-            }
-        }else{
-            setPasswordError('')
+    const passwordHandler = (value) => {
+        if(!value){
+            return('Password cannot be empty')
+         }
+        if(value.length < 3 || value.length > 8){
+            return('Password must be longer than 3 and less than 8')
         }
-    }
-
-    const blurHandler = (e) => {
-        switch(e.target.name){
-            case 'email':
-                setEmailDirty(true)
-                break
-            case 'password':
-                setPasswordDirty(true)
-                break
-        }
+        return('')
     }
 
     return(
@@ -52,27 +34,23 @@ const LoginPage = (props) => {
                </div>
                <div className='login__form'>
                    <div className='login_title'>Member Login</div>
-                    {(emailDirty && emailError) && <div className='login_validation'>{emailError}</div>}
                     <Input
-                        name='email'
+                        id='email'
                         placeholder='Email'
                         value={props.email}
-                        onBlur={e => blurHandler(e)}
-                        onChange={(event) => {
-                            emailHandler(event)
-                            props.setEmail(event.target.value)
+                        onCheck={emailHandler}
+                        onChange={(value) => {
+                            props.setEmail(value)
                         }}
                     />
-                    {(passwordError && passwordDirty) && <div className='login_validation'>{passwordError}</div>}
                     <Input
-                        name='password'
+                        id='password'
                         placeholder='Password'
                         type='password'
                         value={props.password}
-                        onBlur={e => blurHandler(e)}
-                        onChange={(event) => {
-                            passwordHandler(event)
-                            props.setPassword(event.target.value)
+                        onCheck={passwordHandler}
+                        onChange={(value) => {
+                            props.setPassword(value)
                         }}
                     />
                    
