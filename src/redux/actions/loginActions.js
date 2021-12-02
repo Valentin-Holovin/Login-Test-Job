@@ -22,7 +22,12 @@ export const fetchLogin = () => async (dispatch, getState) => {
         const password = getState().login.password;
         const response = await Auth.login(email, password);
         console.log(response.data.token)
-        dispatch(setToken(response.data.token))        
+
+        // const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000)
+        // localStorage.setItem('token', response.data.token) 
+        // localStorage.setItem('expirationDate', expirationDate) 
+        
+        dispatch(setToken(response.data.token))
     }
     catch(e){
         console.log(e, 'Error')

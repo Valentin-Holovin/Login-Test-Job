@@ -5,7 +5,7 @@ const Input = (props) => {
     const [isFocus, setIsFocus] = useState(false)
     const [error, setError] = useState('')
     return (
-        <>
+        <React.Fragment>
             <input 
                 type={props.type}
                 placeholder={props.placeholder}
@@ -28,7 +28,7 @@ const Input = (props) => {
                 
             />
             <div className='input_validation'>{(isFocus && error) && error}</div>
-        </>
+        </React.Fragment>
     )
 }
 

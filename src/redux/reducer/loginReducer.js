@@ -3,7 +3,7 @@ import * as loginActionsType from '../actionsTypes/loginActionsType'
 const initialState = {
     email: '',
     password: '',
-    token: null
+    token: null,
 }
 
 const loginReducer = (state = initialState, action) => {
@@ -22,7 +22,7 @@ const loginReducer = (state = initialState, action) => {
             return {
                 ...state,
                 token: action.payload
-            }    
+            }
         default: 
             return state;
     }

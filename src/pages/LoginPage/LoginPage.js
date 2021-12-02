@@ -3,9 +3,16 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as loginActions from '../../redux/actions/loginActions'
 import Input from '../../components/input/Input'
-import Logo from '../../assets/img/logo.PNG'
+import logo from '../../assets/img/logo.PNG'
+import { useHistory } from 'react-router'
 
 const LoginPage = (props) => {
+
+    const history = useHistory();
+    
+    const handleUrl = () => {
+        history.push("/AfterLoginPage");
+    }
 
     const emailHandler = (value) => {
         const re =  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -27,10 +34,10 @@ const LoginPage = (props) => {
     }
 
     return(
-        <>
+        <React.Fragment>
           <div className='login-block'>
                <div className='login_logo'>
-                    <img src={Logo}/>
+                    <img src={logo} alt='logo'/>
                </div>
                <div className='login__form'>
                    <div className='login_title'>Member Login</div>
@@ -53,12 +60,12 @@ const LoginPage = (props) => {
                             props.setPassword(value)
                         }}
                     />
-                   
-                   <button className='login_button'
+                    <button className='login_button'
                         onClick={() => {
+                            handleUrl()
                             props.fetchLogin()
                         }}
-                   >
+                    >  
                         LOGIN
                     </button>
                    
@@ -69,7 +76,7 @@ const LoginPage = (props) => {
                    <div className='login_item login_create'>Create your account →</div> 
                </div>
           </div>
-        </>
+        </React.Fragment>
     )
 }
 
