@@ -16,18 +16,20 @@ export const setToken = (token) => ({
     payload: token
 })
 
-export const fetchLogin = () => async (dispatch, getState) => {
+export const fetchLogin = (callback) => async (dispatch, getState) => {
     try{
         const email = getState().login.email;
         const password = getState().login.password;
-        const response = await Auth.login(email, password);
-        console.log(response.data.token)
-
-        // const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000)
-        // localStorage.setItem('token', response.data.token) 
-        // localStorage.setItem('expirationDate', expirationDate) 
-        
-        dispatch(setToken(response.data.token))
+        if(!email || !password){
+           return 
+        }
+           const response = await Auth.login(email, password);
+        if(response.data.token){
+            dispatch(setToken(response.data.token))
+            console.log(response.data.token)
+            callback()
+        }   
+       
     }
     catch(e){
         console.log(e, 'Error')

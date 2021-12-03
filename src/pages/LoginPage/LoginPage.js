@@ -60,10 +60,11 @@ const LoginPage = (props) => {
                             props.setPassword(value)
                         }}
                     />
-                    <button className='login_button'
+                    <button 
+                        className='login_button'
                         onClick={() => {
-                            handleUrl()
-                            props.fetchLogin()
+                            
+                            props.fetchLogin(handleUrl)
                         }}
                     >  
                         LOGIN

@@ -2,8 +2,10 @@ import './Input.css'
 import React, {useState} from 'react'
 
 const Input = (props) => {
-    const [isFocus, setIsFocus] = useState(false)
+    
     const [error, setError] = useState('')
+    const [isFocus, setIsFocus] = useState(false)
+
     return (
         <React.Fragment>
             <input 
@@ -20,7 +22,6 @@ const Input = (props) => {
                     if(!!props.onChange){
                        props.onChange(e.target.value)
                     }
-                    
                 }}
                 onBlur={() => {
                     setIsFocus(true)
@@ -33,5 +34,5 @@ const Input = (props) => {
 }
 
 export default React.memo(Input, (prevProps, nextProps) => {
-    return prevProps.value=== nextProps.value
+    return prevProps.value === nextProps.value
   })
